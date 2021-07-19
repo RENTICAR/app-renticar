@@ -1,0 +1,54 @@
+<div class="content">
+
+
+    <div class="title mat-elevation-z3">
+        <h3>Alquiler de Vehículos</h3>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <!-- Filtrar por Fecha -->
+                    <div class="form-content mat-elevation-z3">
+                        <div>
+                            <h4>Fechas de alquiler</h4>
+                            <hr>
+                        </div>
+                        <div>
+                            <app-filtro-fechas (formFechasCompleto)="formFechas = $event" ></app-filtro-fechas>
+                        </div>
+
+                    </div>
+                </td>
+
+                <td rowspan="2" class="list-auto">
+                    <!-- Resultados de la busqueda por filtro -->
+                    <div>
+                        <app-resultado-filtro [vehiculos]="vehiculos" [fechasAlquiler]="formFechas" ></app-resultado-filtro>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <!-- Filtrar por Caracteristicas -->
+                    <div class="form-content mat-elevation-z3">
+                        <div>
+                            <h4>Características</h4>
+                            <hr>
+                        </div>
+                        <div>
+                            <app-filtro-caracteristicas (listaVehiculosFiltrados)="vehiculos = $event"></app-filtro-caracteristicas>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+
+
+
+
+</div>

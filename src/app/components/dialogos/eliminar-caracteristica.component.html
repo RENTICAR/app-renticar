@@ -1,0 +1,10 @@
+<div>
+    <h1 mat-dialog-title>Eliminar caracteristica</h1>
+    <div mat-dialog-content>Esta seguro que desea eliminar la caracteritica <b>{{data.nombre}}</b>.</div>
+
+
+    <mat-dialog-actions >
+        <button mat-button mat-dialog-close color="warn"><mat-icon>close</mat-icon> Cancelar</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial color="primary"><mat-icon>done</mat-icon> Eliminar</button>
+    </mat-dialog-actions>
+</div>

@@ -1,0 +1,23 @@
+h1 {
+    font-size: 30px;
+    text-align: center;
+    margin: 20px;
+    font-style: italic;
+}
+
+.title-renticar {
+    text-align: center;
+    position: relative;
+}
+
+.subtitle-renticar{
+    text-align: center;
+    position: relative;
+    margin: 10px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.content{
+    text-align: center;
+    margin: 30px;
+}

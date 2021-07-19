@@ -1,0 +1,29 @@
+<div class="content-alert">
+    <!-- Respuesta OK -->
+    <div *ngIf="data.respuesta === 'ok'">
+        <h1 mat-dialog-title class="title-ok"><b>{{data.titulo}}</b></h1>
+        <div mat-dialog-content>{{data.mensaje}}</div>
+
+        <mat-dialog-actions>
+            <div class="button-form">
+                <button mat-button [mat-dialog-close]="true" cdkFocusInitial color="accent">
+                    <mat-icon>check_circle</mat-icon> Aceptar
+                </button>
+            </div>
+        </mat-dialog-actions>
+    </div>
+
+    <!-- Respuesta ERROR -->
+    <div *ngIf="data.respuesta === 'fail'">
+        <h1 mat-dialog-title class="title-error"><b>ERROR</b></h1>
+        <div mat-dialog-content>{{data.mensaje}}</div>
+
+        <mat-dialog-actions>
+            <div class="button-form">
+                <button mat-button [mat-dialog-close]="true" cdkFocusInitial color="warn">
+                    <mat-icon>cancel</mat-icon> Cerrar
+                </button>
+            </div>
+        </mat-dialog-actions>
+    </div>
+</div>

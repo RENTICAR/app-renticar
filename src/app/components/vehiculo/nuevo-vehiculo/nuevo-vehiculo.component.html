@@ -1,0 +1,140 @@
+<div class="content">
+    <div class="title mat-elevation-z3">
+        <h3>Registrar un vehículo</h3>
+    </div>
+    <div>
+        <form [formGroup]="form">
+
+            <!-- Tabla Formulario -->
+            <div>
+                <table>
+                    <tr>
+                        <td class="td-top">
+                            <!-- Formulario datos vehiculo -->
+                            <div class="form-content mat-elevation-z3">
+                                <div>
+                                    <h4>Datos del vehículo</h4>
+                                    <hr>
+                                </div>
+                                <div>
+                                    <table cellspacing="0">
+                                        <tr>
+                                            <td class="td-input">
+                                                <mat-form-field appearance="fill" class="input-short">
+                                                    <mat-label>Placa</mat-label>
+                                                    <input matInput placeholder="AAA000" formControlName="placa">
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field appearance="fill" class="input-short" floatLabel="always">
+                                                    <mat-label>Año</mat-label>
+                                                    <input matInput type="number" placeholder="2021" formControlName="ano">
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <mat-form-field appearance="fill" class="input-long">
+                                                    <mat-label>Marca</mat-label>
+                                                    <input matInput placeholder="" formControlName="marca">
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table cellspacing="0">
+                                        <tr>
+                                            <td class="td-input">
+                                                <mat-form-field appearance="fill" class="input-short">
+                                                    <mat-label>Modelo</mat-label>
+                                                    <input matInput placeholder=""
+                                                        formControlName="modelo">
+                                                        <mat-hint>Modelo o serie de la marca</mat-hint>
+                                                </mat-form-field>
+                                            </td>
+                                            <td>
+                                                <mat-form-field appearance="fill" class="input-short">
+                                                    <mat-label>Color</mat-label>
+                                                    <input matInput placeholder="" formControlName="color">
+                                                    <mat-icon matSuffix>palette</mat-icon>
+                                                </mat-form-field>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </td>
+                        <td rowspan="2">
+                            <!-- Formulario datos caracteristicas -->
+                            <div class="form-content mat-elevation-z3">
+                                <div>
+                                    <h4>Características</h4>
+                                    <hr>
+                                </div>
+                                <div>
+                                    <!-- Componente del Formulario de Caracteristicas -->
+                                    <!-- Se recibe el evento que contiene el formulario de ese componente -->
+                                    <app-caracteristicas-vehiculo
+                                        (formCaracteriticasCompleto)="formCaracteristicas = $event">
+                                    </app-caracteristicas-vehiculo>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td class="td-top">
+                            <!-- Formulario fechas de ocupacion dueño-->
+                            <div class="form-content mat-elevation-z3">
+                                <div>
+                                    <h4>Fechas de ocupación dueño</h4>
+                                    <hr>
+                                </div>
+
+                                <div>
+                                    <!-- Componente del Formulario de Fechas -->
+                                    <!-- Se recibe el evento que contiene el formulario de ese componente  -->
+                                    <app-ocupacion-dueno (formFechasCompleto)="formFechas = $event">
+                                    </app-ocupacion-dueno>
+
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+            <div>
+                <!-- Botones pie de pagina -->
+                <table>
+                    <tr>
+                        <td>
+                            <div class="button-form">
+                                <!-- Cancelar proceso -->
+                                <button mat-raised-button color="warn"
+                                    [routerLink]="['/renticar',{outlets: {'vehiculo': ['vehiculos']}}]">
+                                    <mat-icon>close</mat-icon> Cancelar
+                                </button>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="button-form">
+                                <!-- El boton solo se habilita si los tres formularios son validos -->
+                                <button (click)="crearVehiculo()" mat-raised-button color="primary"
+                                    [disabled]="form.invalid || formCaracteristicas.invalid || formFechas.invalid">
+                                    <mat-icon>done</mat-icon> Registrar vehículo
+                                </button>
+                            </div>
+
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+
+    </div>
+</div>

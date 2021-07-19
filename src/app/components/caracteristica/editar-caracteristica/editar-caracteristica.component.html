@@ -1,0 +1,91 @@
+<div class="content">
+    <div class="title mat-elevation-z3">
+        <h3>Editar característica</h3>
+    </div>
+    <div>
+        <!-- Formulario principal -->
+        <form [formGroup]="form">
+            <div class="form-content mat-elevation-z3">
+                <mat-form-field appearance="fill" class="input-long">
+                    <mat-label>Nombre característica</mat-label>
+                    <input matInput type="text" placeholder="Nombre" formControlName="nombre">
+                </mat-form-field>
+            </div>
+
+            <div class="form-content mat-elevation-z3">
+                <div>
+                    <mat-grid-list cols="6" rowHeight="80px">
+                        <mat-grid-tile colspan="4" rowspan="1">
+                            <div class="text-inside-grid">
+                                <h4>Opciones</h4>
+                            </div>
+                        </mat-grid-tile>
+
+                        <mat-grid-tile colspan="2" rowspan="1">
+                            <!-- Se cre un nuevo fomulario con inputs para agregar una nueva opcion -->
+                            <div>
+                                <button mat-mini-fab color="accent" (click)="agregarOpcion()">
+                                    <mat-icon>add</mat-icon>
+                                </button>
+                            </div>
+                        </mat-grid-tile>
+
+                    </mat-grid-list>
+                    <hr>
+                </div>
+
+
+                <!-- Formulario de opcion y precio -->
+                <div formArrayName="opciones" *ngFor="let opcion of opciones.controls; let i = index">
+                    <div [formGroupName]="i">
+                        <div>
+                            <mat-form-field appearance="fill" class="input-long" floatLabel="always">
+                                <mat-label [attr.for]="'opcion'+i">Opcion</mat-label>
+                                <input matInput placeholder="Nombre" [attr.id]="'opcion'+i" formControlName="opcion">
+                            </mat-form-field>
+
+                            <mat-form-field appearance="fill" class="input-short">
+                                <mat-label [attr.for]="'opcion'+i">Precio</mat-label>
+                                <input matInput type="number" class="example-right-align" placeholder="0"
+                                    [attr.id]="'opcion'+i" formControlName="precio">
+                                <span matPrefix>$&nbsp;</span>
+                                <span matSuffix>.00</span>
+                            </mat-form-field>
+
+                            <!-- Quitar un formulario de opcion y precion por su indice-->
+                            <button mat-mini-fab color="warn" (click)="removerOpcion(i)">
+                                <mat-icon>remove</mat-icon>
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="button-form">
+                                <!-- Cancelar proceso -->
+                                <button mat-raised-button color="warn"
+                                    [routerLink]="['/renticar',{outlets: {'caracteristica': ['caracteristicas']}}]">
+                                    <mat-icon>close</mat-icon> Cancelar
+                                </button>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="button-form">
+                                <!-- Confirma proceso -->
+                                <button (click)="actualizarCaracteristica()" mat-raised-button color="primary"
+                                    [disabled]="form.invalid">
+                                    <mat-icon>done</mat-icon> Guardar cambios
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </form>
+    </div>
+</div>

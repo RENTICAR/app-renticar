@@ -1,0 +1,77 @@
+<div class="content">
+
+
+    <div class="title mat-elevation-z3">
+        <h3>Alquilar Vehículo</h3>
+    </div>
+
+    <div>
+        <table>
+            <tr>
+
+                <td colspan="2">
+                    <div class="form-content mat-elevation-z3">
+                        <div>
+                            <h4>Datos del Vehículo</h4>
+                            <hr>
+                        </div>
+                        <div>
+                            <app-datos-vehiculo [idVehiculo]="idVehiculo" [totalDias]="totalDias" [tarifaDiaria]="tarifaDiaria" ></app-datos-vehiculo>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="td-top">
+                    <div class="form-content mat-elevation-z3">
+                        <div>
+                            <h4>Caracteristicas del Vehículo</h4>
+                            <hr>
+                        </div>
+                        <div>
+                            <app-datos-caracteristicas [idVehiculo]="idVehiculo"></app-datos-caracteristicas>
+                        </div>
+                    </div>
+                </td>
+                <td class="td-top">
+                    <div class="form-content mat-elevation-z3">
+                        <div>
+                            <h4>Datos del Cliente</h4>
+                            <hr>
+                        </div>
+                        <div>
+                            <app-datos-cliente (formClienteCompleto)="formDatosCliente = $event"></app-datos-cliente>
+                        </div>
+                    </div>
+                </td>
+                
+            </tr>
+        </table>
+        
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <div class="button-form">
+                        <!-- Cancelar proceso -->
+                        <button  mat-raised-button color="warn" [routerLink]="['/renticar',{outlets: {'alquiler': ['alquileres']}}]">
+                            <mat-icon>close</mat-icon> Cancelar </button>
+                    </div>
+                </td>
+                <td>
+                    <div class="button-form">
+                        <!-- Conformar proceso de creacion -->
+                        <button (click)="crearCliente()" mat-raised-button color="primary"
+                            [disabled]="formDatosCliente.invalid">
+                            <mat-icon>done</mat-icon> Alquilar vehículo
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    
+
+
+</div>

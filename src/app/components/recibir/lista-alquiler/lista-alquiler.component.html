@@ -1,0 +1,96 @@
+<div class="content">
+
+    <div class="title mat-elevation-z3">
+      <h3>Lista de Vehículos Alquilados</h3>
+    </div>
+  
+    <div>
+      <!-- Filtro de busqueda -->
+    <div class="form-content mat-elevation-z3">
+      <mat-form-field appearance="standard">
+        <mat-label>Buscar vehículo o cliente</mat-label>
+        <input autocomplete="off" matInput (keyup)="applyFilter($event)"
+          placeholder="Ingrese la placa del vehículo o el numero de documento del cliente" #input>
+      </mat-form-field>
+    </div>
+      <!-- Lista que se mostrara en la tabla (alquileres) -->
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+        <!-- Columna Numeracion fila -->
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let alquiler; let i= index"> {{i+1}} </td>
+        </ng-container>
+  
+        <!-- Columna Placa -->
+        <ng-container matColumnDef="placa">
+          <th mat-header-cell *matHeaderCellDef> Placa </th>
+          <td mat-cell *matCellDef="let alquiler"> {{alquiler.vehiculo.placa}} </td>
+        </ng-container>
+  
+        <!-- Columna Marca -->
+        <ng-container matColumnDef="marca">
+          <th mat-header-cell *matHeaderCellDef> Marca </th>
+          <td mat-cell *matCellDef="let alquiler"> {{alquiler.vehiculo.marca}} </td>
+        </ng-container>
+  
+        <!-- Columna Modelo -->
+        <ng-container matColumnDef="modelo">
+          <th mat-header-cell *matHeaderCellDef> Modelo </th>
+          <td mat-cell *matCellDef="let alquiler"> {{alquiler.vehiculo.modelo}} </td>
+        </ng-container>
+  
+        <!-- Columna Año -->
+        <ng-container matColumnDef="ano">
+          <th mat-header-cell *matHeaderCellDef> Año </th>
+          <td mat-cell *matCellDef="let alquiler"> {{alquiler.vehiculo.ano}} </td>
+        </ng-container>
+  
+        <!-- Columna Color -->
+        <ng-container matColumnDef="color">
+          <th mat-header-cell *matHeaderCellDef> Color </th>
+          <td mat-cell *matCellDef="let alquiler"> {{alquiler.vehiculo.color}} </td>
+        </ng-container>
+  
+        <!-- Columna Cliente -->
+        <ng-container matColumnDef="cliente">
+            <th mat-header-cell *matHeaderCellDef> Cliente </th>
+            <td mat-cell *matCellDef="let alquiler"> {{alquiler.cliente.num_documento}} </td>
+          </ng-container>
+  
+        <!-- Columna Fecha -->
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef> Dias </th>
+          <td mat-cell *matCellDef="let alquiler"> {{alquiler.fec_inicio | date}}-{{alquiler.fec_fin | date}} </td>
+        </ng-container>
+  
+        <!-- Columna Recibir -->
+        <ng-container matColumnDef="recibir">
+          <th mat-header-cell *matHeaderCellDef> Recibir </th>
+          <td mat-cell *matCellDef="let alquiler">
+            <!-- Carga la ruta editar caracteristica-->
+            <button mat-mini-fab color="accent"
+              [routerLink]="['/renticar',{outlets: {'recibido': ['recibidos','crear',alquiler.id_alquileres]}}]">
+              <mat-icon>event_available</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+  
+        <!-- Columna Tarifa -->
+        <ng-container matColumnDef="tarifa">
+            <th mat-header-cell *matHeaderCellDef> Tarifa </th>
+            <td mat-cell *matCellDef="let alquiler"> <b>{{alquiler.tarifa | currency:'COP':'symbol-narrow':'3.0'}}</b> </td>
+          </ng-container>
+  
+        <!-- Orden de las columnas de la tabla -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Fila que se muestra cuando no hay datos coincidentes -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro "{{input.value}}"</td>
+      </tr>
+      
+      </table>
+    </div>
+  </div>

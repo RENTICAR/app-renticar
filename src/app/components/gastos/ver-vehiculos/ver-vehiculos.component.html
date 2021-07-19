@@ -1,0 +1,109 @@
+<div class="content">
+
+    <div class="title mat-elevation-z3">
+      <table>
+        <tr>
+          <td>
+            <h3>Lista de Vehículos con Gastos</h3>
+          </td>
+          <td>
+            <div class="button-add">
+              <!-- Carga la ruta de ver reporte-->
+              <button mat-raised-button color="" [routerLink]="['/renticar',{outlets: {'gasto': ['gastos','reporte']}}]">
+                <mat-icon>trending_up</mat-icon> Reporte de Gastos
+              </button>
+            </div>
+          </td>
+        </tr>
+      </table>
+      
+    </div>
+  
+    <div>
+      <!-- Filtro de busqueda -->
+      <div class="form-content mat-elevation-z3">
+        <mat-form-field appearance="standard">
+          <mat-label>Buscar vehículo</mat-label>
+          <input autocomplete="off" matInput (keyup)="applyFilter($event)"
+            placeholder="Ingrese cualquier dato del vehículo" #input>
+        </mat-form-field>
+      </div>
+      <!-- Lista que se mostrara en la tabla (gastos vehiculos) -->
+      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+        <!-- Columna Numeracion fila -->
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let vehiculo; let i= index"> {{i+1}} </td>
+        </ng-container>
+  
+        <!-- Columna Placa -->
+        <ng-container matColumnDef="placa">
+          <th mat-header-cell *matHeaderCellDef> Placa </th>
+          <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.PLACA}} </td>
+        </ng-container>
+  
+        <!-- Columna Marca -->
+        <ng-container matColumnDef="marca">
+          <th mat-header-cell *matHeaderCellDef> Marca </th>
+          <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.MARCA}} </td>
+        </ng-container>
+  
+        <!-- Columna Modelo -->
+        <ng-container matColumnDef="modelo">
+          <th mat-header-cell *matHeaderCellDef> Modelo </th>
+          <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.MODELO}} </td>
+        </ng-container>
+  
+        <!-- Columna Año -->
+        <ng-container matColumnDef="ano">
+          <th mat-header-cell *matHeaderCellDef> Año </th>
+          <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.ANO}} </td>
+        </ng-container>
+  
+        <!-- Columna Color -->
+        <ng-container matColumnDef="color">
+          <th mat-header-cell *matHeaderCellDef> Color </th>
+          <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.COLOR}} </td>
+        </ng-container>
+  
+        <!-- Columna Propio -->
+        <ng-container matColumnDef="propio">
+          <th mat-header-cell *matHeaderCellDef> Propio </th>
+          <td mat-cell *matCellDef="let vehiculo">
+            <!-- Se muestra un dato diferente en la columna segun el valor del atributo propio -->
+            <div *ngIf="vehiculo.PROPIO==1">SI</div>
+            <div *ngIf="vehiculo.PROPIO==0">NO</div>
+          </td>
+        </ng-container>
+  
+        <!-- Columna Estado -->
+        <ng-container matColumnDef="gastos">
+          <th mat-header-cell *matHeaderCellDef> Gastos </th>
+          <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.GASTOS | currency}} </td>
+        </ng-container>
+  
+        <!-- Columna Agregar Gastos -->
+        <ng-container matColumnDef="agregar">
+          <th mat-header-cell *matHeaderCellDef> Agregar gastos </th>
+          <td mat-cell *matCellDef="let vehiculo">
+            <!-- Carga la ruta editar caracteristica-->
+            <button mat-mini-fab color="accent" 
+              [routerLink]="['/renticar',{outlets: {'gasto': ['gastos','crear',vehiculo.ID_VEHICULOS]}}]">
+              <mat-icon>price_check</mat-icon>
+            </button>
+          </td>
+        </ng-container>        
+  
+        <!-- Orden de las columnas de la tabla -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Fila que se muestra cuando no hay datos coincidentes -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro "{{input.value}}"</td>
+      </tr>
+      </table>
+    </div>
+
+  </div>

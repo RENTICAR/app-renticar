@@ -1,0 +1,15 @@
+table {
+    width: 100%;
+  }
+  
+  h3 {
+  font-weight: bold;
+  }
+  .content{
+  margin: 30px 100px;
+  }
+  
+  .button-add{
+  text-align: center;
+  margin: 15px;
+  }

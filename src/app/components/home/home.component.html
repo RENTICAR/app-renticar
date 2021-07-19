@@ -1,0 +1,79 @@
+<!-- Titulo -->
+<div class="title-renticar">
+  <h1 style="color: rgb(22, 11, 122);"><em style="color: rgb(11, 2, 90);">
+      <mat-icon style="font-size: smaller; ">car_rental</mat-icon><i>_</i>
+    </em> <b style="color: rgb(63, 192, 31);">RENTI</b>CAR</h1>
+</div>
+<div class="subtitle-renticar">
+  <h2 style="color: rgb(11, 2, 90);">ALQUILER DE VEHICULOS</h2>
+</div>
+
+<!-- Menu por pestañas -->
+<div>
+  <mat-tab-group color="accent" backgroundColor="primary" (selectedTabChange)="menuTab($event)">
+
+    <!-- Alquilar vehiculo -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>car_rental</mat-icon>Alquilar vehículo
+      </ng-template>
+      <router-outlet name='alquiler'></router-outlet>
+    </mat-tab>
+
+    <!-- Recibir vehiculos -->
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon>compare_arrows</mat-icon>Recibir vehículo
+      </ng-template>
+      <router-outlet name='recibido'></router-outlet>
+    </mat-tab>
+
+    <!-- Vehiculos -->
+    <mat-tab *ngIf="usuario=='admin'">
+      <ng-template mat-tab-label>
+        <mat-icon>airport_shuttle</mat-icon>Vehículos
+      </ng-template>
+      <router-outlet name='vehiculo'></router-outlet>
+    </mat-tab>
+
+    <!-- Caracteristicas -->
+    <mat-tab *ngIf="usuario=='admin'">
+      <ng-template mat-tab-label>
+        <mat-icon>auto_awesome</mat-icon>Características
+      </ng-template>
+      <router-outlet name='caracteristica'></router-outlet>
+    </mat-tab>
+
+    <!-- Gastos -->
+    <mat-tab *ngIf="usuario=='admin'">
+      <ng-template mat-tab-label>
+        <mat-icon>paid</mat-icon>Gastos
+      </ng-template>
+      <router-outlet name='gasto'></router-outlet>
+    </mat-tab>
+
+    <!-- Informe alquiler -->
+    <mat-tab *ngIf="usuario=='admin'">
+      <ng-template mat-tab-label>
+        <mat-icon>summarize</mat-icon>Informe de alquiler
+      </ng-template>
+      <router-outlet name='informe'></router-outlet>
+    </mat-tab>
+
+    <!-- Usuario -->
+    <mat-tab disabled>
+      <ng-template mat-tab-label>
+        <div disabled class="example-spacer">
+          <h5>Bienvenido <p><b>{{usuario}}</b></p> </h5>
+        </div>
+        <div>
+          <!-- Simular cerrado de sesion -->
+          <button mat-icon-button routerLink='/login'>
+            <mat-icon>logout</mat-icon>
+          </button>
+        </div>
+      </ng-template>
+    </mat-tab>
+
+  </mat-tab-group>
+</div>

@@ -1,0 +1,25 @@
+<div>
+
+    <form [formGroup]="form">
+        <div formArrayName="caracteristicas" *ngFor="let caracteristica of caracteristicas.controls; let i = index">
+            <div [formGroupName]="i">
+                <div>
+                    <!-- {{caracteristica.value.nombre}}:   -->
+                    
+                    <mat-form-field appearance="fill" class="input-short">
+                        <mat-label [attr.for]="'caracteristica'+i">{{caracteristica.value.nombre | titlecase}}</mat-label>
+                        <!-- Lista de opciones que se mostrara en el select -->
+                        <mat-select required [attr.id]="'caracteristica'+i" formControlName="opcion">
+                            <mat-option (click)="enviarFromularioCaracteriticas()">--</mat-option>
+                            <mat-option *ngFor="let opcion of listaCaracteristicaOpciones.get(caracteristica.value.id)"
+                                [value]="opcion" (click)="llenarListasVehiculos()">
+                                {{opcion.opcion }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

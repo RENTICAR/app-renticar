@@ -1,0 +1,51 @@
+<div>
+    <!-- Lista que se mostrara en la tabla (vehiculos) -->
+    <table mat-table [dataSource]="vehiculo">
+
+      <!-- Columna Numeracion fila -->
+      <ng-container matColumnDef="fechas">
+        <th mat-header-cell *matHeaderCellDef> Días de alquiler </th>
+        <td mat-cell *matCellDef="let vehiculo; let i= index"> {{fechaInicio | date}} - {{fechaFin | date}} </td>
+      </ng-container>
+
+      <!-- Columna Placa -->
+      <ng-container matColumnDef="placa">
+        <th mat-header-cell *matHeaderCellDef> Placa </th>
+        <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.placa}} </td>
+      </ng-container>
+
+      <!-- Columna Marca -->
+      <ng-container matColumnDef="marca">
+        <th mat-header-cell *matHeaderCellDef> Marca </th>
+        <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.marca}} </td>
+      </ng-container>
+
+      <!-- Columna Modelo -->
+      <ng-container matColumnDef="modelo">
+        <th mat-header-cell *matHeaderCellDef> Modelo </th>
+        <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.modelo}} </td>
+      </ng-container>
+
+      <!-- Columna Año -->
+      <ng-container matColumnDef="ano">
+        <th mat-header-cell *matHeaderCellDef> Año </th>
+        <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.ano}} </td>
+      </ng-container>
+
+      <!-- Columna Color -->
+      <ng-container matColumnDef="color">
+        <th mat-header-cell *matHeaderCellDef> Color </th>
+        <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.color}} </td>
+      </ng-container>
+
+      <!-- Columna Tarifa -->
+      <ng-container matColumnDef="tarifa">
+        <th mat-header-cell *matHeaderCellDef> Tarifa total del servicio</th>
+        <td mat-cell *matCellDef="let vehiculo"><b> {{totalDias*tarifaDiaria | currency}} </b></td>
+      </ng-container>
+
+      <!-- Orden de las columnas de la tabla -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>

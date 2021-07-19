@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+}
+
+h3 {
+font-weight: bold;
+}
+
+.content{
+margin: 30px 100px;
+}
+
+.form-content {
+  padding: 10px 30px;
+  background-color: #FFFFFF;
+  margin-bottom: 5px;
+  text-align: justify;
+  position: relative;
+}
+
+.button-add{
+text-align: center;
+margin: 15px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}

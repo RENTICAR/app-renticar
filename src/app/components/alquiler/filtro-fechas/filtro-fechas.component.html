@@ -1,0 +1,16 @@
+
+<div>
+    <form [formGroup]="form">
+    <!-- Input de fechas por rango -->
+    <mat-form-field appearance="fill" class="input-long">
+        <mat-label >Fechas que no estará disponible</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate placeholder="Fecha inicio" formControlName="start">
+            <!-- Envia el formulario al padre cuendo hay un cambio -->
+            <input matEndDate placeholder="Fecha fin" formControlName="end" (dateChange)="enviarEventos()">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+    </mat-form-field>
+</form>
+</div>

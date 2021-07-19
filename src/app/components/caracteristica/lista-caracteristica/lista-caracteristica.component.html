@@ -1,0 +1,106 @@
+<div class="content">
+
+  <div class="title mat-elevation-z3">
+    <table>
+      <tr>
+        <td>
+          <h3>Lista de Características</h3>
+        </td>
+        <td>
+          <div class="button-add">
+            <!-- Carga la ruta de crear caracteristica-->
+            <button mat-raised-button class="button-add"color=""
+              [routerLink]="['/renticar',{outlets: {'caracteristica': ['caracteristicas','ajustar']}}]">
+              <mat-icon>price_change</mat-icon> Ajustar Precios
+            </button>
+            <button mat-raised-button color="primary"
+              [routerLink]="['/renticar',{outlets: {'caracteristica': ['caracteristicas','crear']}}]">
+              <mat-icon>add</mat-icon> Nueva Característica
+            </button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div>
+    <!-- Lista que se mostrara en la tabla (caracteriticas) -->
+    <table mat-table [dataSource]="caracteristicas" class="mat-elevation-z3">
+
+
+      <!-- Columna Numeracion fila -->
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element; let i= index"> {{i+1}} </td>
+      </ng-container>
+
+      <!-- Columna Nombre -->
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+      </ng-container>
+
+      <!-- Columna Opciones -->
+      <ng-container matColumnDef="opciones">
+        <th mat-header-cell *matHeaderCellDef> Opciones </th>
+        <td mat-cell *matCellDef="let element">
+          <!-- Trae la lista de opciones de una caracteritica al hacer click en el select -->
+          <mat-form-field appearance="fill" (click)="listarOpciones(element.id_caracteristicas)">
+            <mat-label>Lista de opciones</mat-label>
+            <!-- Lista de opciones que se mostrara en el select -->
+            <mat-select>
+              <mat-option>--</mat-option>
+
+              <!-- Agrega a un Map el precio de la opcion seleccionada y los asocia con el id de la caracteristica -->
+              <!-- Llena el select con las opciones de la lista de opciones -->
+              <mat-option *ngFor="let opcion of listaCaracteristicaOpciones.get(element.id_caracteristicas)"
+                [value]="opcion" (click)="agregarPrecio(element.id_caracteristicas,opcion.precio)">
+                {{opcion.opcion}}
+              </mat-option>
+            </mat-select>
+            <!-- <mat-error *ngIf="opcionControl.hasError('required')">Please choose an animal</mat-error> -->
+            <mat-hint>Precio: {{selectOpciones.get(element.id_caracteristicas) | currency}}</mat-hint>
+          </mat-form-field>
+        </td>
+      </ng-container>
+
+      <!-- Columna Precio -->
+      <ng-container matColumnDef="precio">
+        <th mat-header-cell *matHeaderCellDef> Precio </th>
+        <td mat-cell *matCellDef="let element">
+          <!-- Busca en el Map selectOpciones el precio de la opcion seleccionada -->
+          <b>{{selectOpciones.get(element.id_caracteristicas) | currency}}</b>
+        </td>
+      </ng-container>
+
+      <!-- Columna Editar -->
+      <ng-container matColumnDef="editar">
+        <th mat-header-cell *matHeaderCellDef> Editar </th>
+        <td mat-cell *matCellDef="let element">
+          <!-- Carga la ruta editar caracteristica-->
+          <button mat-mini-fab color="accent"
+            [routerLink]="['/renticar',{outlets: {'caracteristica': ['caracteristicas','editar',element.id_caracteristicas]}}]">
+            <mat-icon>edit_note</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Column Eliminar -->
+      <ng-container matColumnDef="eliminar">
+        <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+        <td mat-cell *matCellDef="let element">
+          <!-- Muestra el dialogo de eliminar-caracteritica -->
+          <button mat-mini-fab color="warn" (click)="abrirAlerta(element.id_caracteristicas, element)">
+            <mat-icon>delete_sweep</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Nombres de las columnas de la tabla -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>
+
+  
+</div>

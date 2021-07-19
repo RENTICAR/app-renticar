@@ -1,0 +1,12 @@
+.text-inside-grid {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+  }
+
+.input-long{
+    min-width: 150px;
+    max-width: 300px;
+    width: 100%;
+    margin: 8px;
+}

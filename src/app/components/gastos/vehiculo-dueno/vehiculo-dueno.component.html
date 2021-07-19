@@ -1,0 +1,64 @@
+<div>
+    <!-- Datos del vehiculo -->
+    <div class="form-content mat-elevation-z3">
+        <div>
+            <h4>Gasto total del prestamo</h4>
+            <hr>
+        </div>
+        <div>
+            <form [formGroup]="form">
+                <!-- Formulario de gastos -->
+                <div formArrayName="gastos" *ngFor="let gasto of gastos.controls; let i = index">
+                    <!-- Se crea un formulario por cada tipo de gasto -->
+                    <div [formGroupName]="i">
+                        <div class="date-content">
+                            <table cellspacing="0">
+                                <tr>
+                                    <!-- Input costo gasto -->
+                                    <td class="td-input">
+                                        <mat-form-field appearance="fill" class="input-short" floatLabel="always">
+                                            <mat-label [attr.for]="'gasto'+i">Tarifa por dia</mat-label>
+                                            <input matInput type="number" class="example-right-align" placeholder="0"
+                                                [attr.id]="'gasto'+i" formControlName="tarifa"
+                                                (change)="enviarFromulario()">
+                                            <span matPrefix>$&nbsp;</span>
+                                            <span matSuffix>.00</span>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <!-- Input fecha gasto -->
+                                        <mat-form-field appearance="fill" class="input-long">
+                                            <mat-label [attr.for]="'gasto'+i">Fecha del gasto</mat-label>
+                                            <input matInput [matDatepicker]="picker" [attr.id]="'gasto'+i"
+                                                formControlName="fecha" (dateChange)="calcularDiasDisponibles()">
+                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                            <mat-datepicker #picker></mat-datepicker>
+                                        </mat-form-field>
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <table cellspacing="0">
+                                <tr>
+                                    <td>
+                                        <div>
+                                            <p>Dias disponibles: <b>{{diasDisponibles}}</b></p>
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <div>
+                                            <p>Tarifa total: <b class="tarifa">{{tarifaTotal | currency}}</b></p>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

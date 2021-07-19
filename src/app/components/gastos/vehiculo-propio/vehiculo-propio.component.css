@@ -1,0 +1,44 @@
+.form-content {
+    padding: 10px 30px;
+    background-color: #FFFFFF;
+    margin-bottom: 5px;
+    text-align: justify;
+    position: relative;
+}
+
+.date-content {
+    text-align: center;
+}
+
+h4{
+    font-style: italic;
+}
+
+.input-long{
+    min-width: 100px;
+    max-width: 350px;
+    width: 100%;
+}
+
+.input-short{
+    min-width: 50px;
+    max-width: 280px;
+    width: 100%;
+}
+
+.td-input{
+    padding-right: 15px;
+}
+
+.example-right-align {
+    text-align: right;
+}
+
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+display: none;
+}
+
+input.example-right-align {
+-moz-appearance: textfield;
+}

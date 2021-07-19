@@ -1,0 +1,137 @@
+<div class="content">
+
+    <div class="title mat-elevation-z3">
+        <h3>Informe de Gastos Anual</h3>
+      </div>
+
+    <div class="title mat-elevation-z3">
+      <table>
+        <tr>
+          <td>
+              <!-- Año para genrar informe -->
+            <form [formGroup]="form">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Año</mat-label>
+                    <input autocomplete="off" type="number" matInput placeholder="2021" formControlName="ano">
+                    <mat-icon matSuffix>event</mat-icon>
+                  </mat-form-field>
+            </form>
+          </td>
+          <td>
+            <div class="button-add">
+              <!-- Carga la ruta de crear vehiculo-->
+              <button mat-raised-button color="accent" (click)="generarReporte()" [disabled]="form.invalid">
+                <mat-icon>bar_chart</mat-icon> Generar informe
+              </button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  
+    <div>
+      
+      <!-- Lista que se mostrara en la tabla (vehiculos) -->
+      <table mat-table matTableExporter [dataSource]="reporte" #exporter="matTableExporter" class="mat-elevation-z8">
+  
+        <!-- Columna Numeracion fila -->
+        <ng-container matColumnDef="index">
+          <th mat-header-cell *matHeaderCellDef> No. </th>
+          <td mat-cell *matCellDef="let vehiculo; let i= index"> {{i+1}} </td>
+        </ng-container>
+  
+        <!-- Columna Placa -->
+        <ng-container matColumnDef="placa">
+          <th mat-header-cell *matHeaderCellDef> Placa </th>
+          <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.PLACA}} </td>
+        </ng-container>
+  
+        <!-- Columna Marca -->
+        <ng-container matColumnDef="marca">
+          <th mat-header-cell *matHeaderCellDef> Marca </th>
+          <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.MARCA}} </td>
+        </ng-container>
+  
+        <!-- Columna Modelo -->
+        <ng-container matColumnDef="modelo">
+          <th mat-header-cell *matHeaderCellDef> Modelo </th>
+          <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.MODELO}} </td>
+        </ng-container>
+  
+        <!-- Columna Año -->
+        <ng-container matColumnDef="ano">
+          <th mat-header-cell *matHeaderCellDef> Año </th>
+          <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.ANO}} </td>
+        </ng-container>
+  
+        <!-- Columna Color -->
+        <ng-container matColumnDef="color">
+          <th mat-header-cell *matHeaderCellDef> Color </th>
+          <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.COLOR}} </td>
+        </ng-container>
+  
+        <!-- Columna Propio -->
+        <ng-container matColumnDef="propio">
+          <th mat-header-cell *matHeaderCellDef> Propio </th>
+          <td mat-cell *matCellDef="let vehiculo">
+            <!-- Se muestra un dato diferente en la columna segun el valor del atributo propio -->
+            <div *ngIf="vehiculo.PROPIO==1">SI</div>
+            <div *ngIf="vehiculo.PROPIO==0">NO</div>
+          </td>
+        </ng-container>
+  
+        <!-- Columna Ingresos -->
+        <ng-container matColumnDef="ingresos">
+            <th mat-header-cell *matHeaderCellDef> Ingresos </th>
+            <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.INGRESOS | currency}} </td>
+          </ng-container>
+
+        <!-- Columna Gastos -->
+        <ng-container matColumnDef="gastos">
+          <th mat-header-cell *matHeaderCellDef> Gastos </th>
+          <td mat-cell *matCellDef="let vehiculo"> {{vehiculo.GASTOS | currency}} </td>
+        </ng-container>        
+
+        <!-- Columna Rentabilidad -->
+        <ng-container matColumnDef="rentabilidad">
+            <th mat-header-cell *matHeaderCellDef> Rentabilidad </th>
+            <td mat-cell *matCellDef="let vehiculo"><b>
+                <div *ngIf="vehiculo.INGRESOS-vehiculo.GASTOS>=0">{{vehiculo.INGRESOS-vehiculo.GASTOS | currency}}</div>
+                <div *ngIf="vehiculo.INGRESOS-vehiculo.GASTOS<0" class="aler">{{vehiculo.INGRESOS-vehiculo.GASTOS | currency}}</div>
+            </b></td>
+          </ng-container>
+        
+  
+        <!-- Orden de las columnas de la tabla -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+      </table>
+    </div>
+    <div>
+        <!-- Botones pie de pagina -->
+        <table>
+            <tr>
+                <td>
+                    <div class="button-form">
+                        <!-- Cancelar proceso -->
+                        <button mat-raised-button color="warn"
+                            [routerLink]="['/renticar',{outlets: {'gasto': ['gastos']}}]">
+                            <mat-icon>close</mat-icon> Cancelar
+                        </button>
+                    </div>
+                </td>
+                <td>
+                    <div class="button-form">
+                        <!-- El boton solo se habilita si el formulario es valido -->
+                        <button (click)="exporter.exportTable('csv')" mat-raised-button color="primary" [disabled]="!reporte">
+                            <mat-icon>file_download</mat-icon> Descargar informe
+                        </button>
+                    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+  
+  </div>

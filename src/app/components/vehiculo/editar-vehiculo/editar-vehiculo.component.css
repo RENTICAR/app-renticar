@@ -1,0 +1,48 @@
+h3 {
+    font-weight: bold;
+  }
+
+h4{
+ font-style: italic;
+ }
+ 
+ table {
+    width: 100%;
+  }
+
+.td-input{
+    padding-right: 8px;
+  }
+
+.content{
+    margin: 30px 200px;
+  }
+
+.form-content {
+    padding: 10px 30px;
+    background-color: #FFFFFF;
+    margin-bottom: 5px;
+    text-align: justify;
+    position: relative;
+}
+
+.input-long{
+    min-width: 80px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.input-short{
+    min-width: 30px;
+    max-width: 250px;
+    width: 100%;
+}
+
+.button-form{
+    text-align: center;
+    margin: 15px;
+}
+
+.td-top{
+  vertical-align: top;
+}

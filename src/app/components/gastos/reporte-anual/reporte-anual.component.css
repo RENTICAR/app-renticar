@@ -1,0 +1,37 @@
+table {
+    width: 100%;
+  }
+
+.form-content {
+    padding: 10px 30px;
+    background-color: #FFFFFF;
+    margin-bottom: 5px;
+    text-align: justify;
+    position: relative;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+h4{
+    font-style: italic;
+}
+
+.content{
+margin: 30px 200px;
+}
+
+.button-form{
+    text-align: center;
+    margin: 15px;
+}
+
+.button-add{
+    text-align: right;
+    margin-right: 15px;
+}
+
+.aler{
+    color: #C62828;
+}

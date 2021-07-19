@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+}
+
+h3 {
+  font-weight: bold;
+}
+.content{
+  margin: 30px 100px;
+}
+
+.button-add{
+  text-align: right;
+  margin-right: 15px;
+}
+
+.button-form{
+    text-align: center;
+    margin: 15px;
+}
+
+.aler{
+    color: #C62828;
+}
+
+.td-input{
+    margin-right: 8px;
+}
+
+.td-nov{
+  max-width: 200px;
+}

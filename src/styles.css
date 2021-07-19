@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: #F4F4F4;
+}
+
+table{
+    width: 100%;
+}
+
+.title{
+    margin-bottom: 5px;
+    padding: 10px 20px 5px 20px;
+    background-color: #FFFFFF;
+  }
+
+hr {
+    height:1px;
+    border-width:0;
+    background-color: #E6E6E6;
+}
+

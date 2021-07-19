@@ -1,0 +1,16 @@
+.content-alert{
+    text-align: center;
+}
+
+.title-error{
+    color: #C62828;
+}
+
+.title-ok{
+    color: #283593;
+}
+
+.button-form{
+    text-align: center;
+    margin: 0 auto;
+}

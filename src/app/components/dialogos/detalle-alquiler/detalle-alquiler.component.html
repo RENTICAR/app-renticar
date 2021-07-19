@@ -1,0 +1,46 @@
+<div class="content-detail">
+    <h1 mat-dialog-title>Lista de alquileres del vehiculo <b>{{data[0].vehiculo.placa}}</b></h1>
+    <div mat-dialog-content>Fechas en las que estará rentado el vehiculo:</div>
+
+    <div mat-dialog-content>
+        <table mat-table [dataSource]="data">
+
+            <!-- Columna Numeracion fila -->
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let alquiler; let i= index"> {{i+1}} </td>
+      </ng-container>
+
+      <!-- Columna Placa -->
+      <ng-container matColumnDef="desde">
+        <th mat-header-cell *matHeaderCellDef> Desde </th>
+        <td mat-cell *matCellDef="let alquiler"> {{alquiler.fec_inicio | date}} </td>
+      </ng-container>
+
+      <!-- Columna Placa -->
+      <ng-container matColumnDef="hasta">
+        <th mat-header-cell *matHeaderCellDef> Hasta </th>
+        <td mat-cell *matCellDef="let alquiler"> {{alquiler.fec_fin | date}} </td>
+      </ng-container>
+
+      <!-- Columna Placa -->
+      <ng-container matColumnDef="cliente">
+        <th mat-header-cell *matHeaderCellDef> Cliente </th>
+        <td mat-cell *matCellDef="let alquiler"> {{alquiler.cliente.num_documento}} </td>
+      </ng-container>
+
+            <!-- Orden de las columnas de la tabla -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+    </div>
+    <mat-dialog-actions >
+        <div class="button-form">
+            <button mat-button [mat-dialog-close]="true" cdkFocusInitial color="primary">
+                <mat-icon>open_in_new_off</mat-icon> Aceptar
+            </button>
+        </div>
+        
+    </mat-dialog-actions>
+</div>

@@ -1,0 +1,32 @@
+table {
+    width: 100%;
+  }
+
+.form-content {
+    padding: 10px 30px;
+    background-color: #FFFFFF;
+    margin-bottom: 5px;
+    text-align: justify;
+    position: relative;
+}
+
+h3 {
+    font-weight: bold;
+}
+
+h4{
+    font-style: italic;
+}
+
+.content{
+margin: 30px 200px;
+}
+
+.button-form{
+    text-align: center;
+    margin: 15px;
+}
+
+.td-top{
+    vertical-align: top;
+  }

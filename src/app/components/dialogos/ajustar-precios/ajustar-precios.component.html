@@ -1,0 +1,10 @@
+<div>
+    <h1 mat-dialog-title>Ajustar precios</h1>
+    <div mat-dialog-content>Esta seguro que desea hacer un aumento del <b>{{data}}%</b> al precio de todas las opciones de las características actualmente activas en el sistema.</div>
+
+
+    <mat-dialog-actions >
+        <button mat-button mat-dialog-close cdkFocusInitial color="warn"><mat-icon>close</mat-icon> Cancelar</button>
+        <button mat-button [mat-dialog-close]="true" color="primary"><mat-icon>done</mat-icon> Aceptar</button>
+    </mat-dialog-actions>
+</div>

@@ -1,0 +1,56 @@
+<div>
+    <form [formGroup]="form">
+
+        
+        <div>
+            <mat-grid-list cols="6" rowHeight="80px">
+                <mat-grid-tile colspan="4" rowspan="1">
+                    <div class="text-inside-grid">
+                        <!-- Slide habilita el formulario mientras este en checked -->
+                        <mat-slide-toggle [checked]="!form.controls.fechas.disabled"
+                            (change)="form.controls.fechas.disabled ? form.controls.fechas.enable() : form.controls.fechas.disable(); enviarFromularioFechas();">
+                            Vehículo no propio
+                        </mat-slide-toggle>
+                    </div>
+                </mat-grid-tile>
+                <mat-grid-tile colspan="2" rowspan="1">
+                    <div>
+                        <!-- Boton para agregar un fromulario de fechas -->
+                        <button [disabled]="form.controls.fechas.disabled" mat-mini-fab color="primary" (click)="agregarOpcion()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                </mat-grid-tile>
+                
+            </mat-grid-list>
+        </div>
+    
+        <!-- formulario para las fechas  -->
+        <div formArrayName="fechas" *ngFor="let fecha of fechas.controls; let i = index">
+            <div [formGroupName]="i">
+                <div>
+
+                    <!-- Input de fechas por rango -->
+                    <mat-form-field appearance="fill" class="input-long">
+                        <mat-label [attr.for]="'fecha'+i">Fechas que no estará disponible</mat-label>
+                        <mat-date-range-input [rangePicker]="picker" [attr.id]="'fecha'+i">
+                            <input matStartDate placeholder="Fecha inicio" formControlName="start">
+                            <!-- Envia el formulario al padre cuendo hay un cambio -->
+                            <input matEndDate placeholder="Fecha fin" formControlName="end"
+                                (dateChange)="enviarFromularioFechas()">
+                        </mat-date-range-input>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-date-range-picker #picker></mat-date-range-picker>
+                    </mat-form-field>
+
+                    <!-- Boton para quitar un fromulario de fechas -->
+                    <button [disabled]="form.controls.fechas.disabled" mat-mini-fab color="warn"
+                        (click)="removerOpcion(i)">
+                        <mat-icon>remove</mat-icon>
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

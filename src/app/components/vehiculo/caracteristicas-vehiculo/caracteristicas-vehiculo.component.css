@@ -1,0 +1,9 @@
+.input-short{
+    min-width: 30px;
+    max-width: 300px;
+    width: 100%;
+}
+
+.inline{
+    display: inline;
+}

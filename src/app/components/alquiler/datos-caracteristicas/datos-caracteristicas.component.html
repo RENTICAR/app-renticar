@@ -1,0 +1,27 @@
+<div class="content">
+    <!-- Lista que se mostrara en la tabla (vehiculos) -->
+    <table mat-table [dataSource]="caracteristicasVehiculos">
+
+      <!-- Columna Numeracion fila -->
+      <ng-container matColumnDef="index">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element; let i= index"> {{i+1}} </td>
+      </ng-container>
+
+      <!-- Columna Caracteristica -->
+      <ng-container matColumnDef="caracteristica">
+        <th mat-header-cell *matHeaderCellDef> Caracteristica </th>
+        <td mat-cell *matCellDef="let element"> {{element.opcion.caracteristica.nombre}} </td>
+      </ng-container>
+
+      <!-- Columna Opcion -->
+      <ng-container matColumnDef="opcion">
+        <th mat-header-cell *matHeaderCellDef> Opcion </th>
+        <td mat-cell *matCellDef="let element"> {{element.opcion.opcion}} </td>
+      </ng-container>
+
+      <!-- Orden de las columnas de la tabla -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>

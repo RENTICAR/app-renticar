@@ -1,0 +1,29 @@
+.content {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+}
+
+.login {
+    width: 100%;
+    max-width: 350px;
+    text-align: center;
+}
+
+.error{
+    color: #C62828;
+    font-style: italic;
+}
+
+.loading{
+    margin: 0 auto;
+}
+
+.img-login{
+    width: 100%;
+}
+
+.title-card{
+    margin: 25px;
+}

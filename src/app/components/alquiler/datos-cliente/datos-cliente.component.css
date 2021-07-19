@@ -1,0 +1,19 @@
+.input-long{
+    min-width: 80px;
+    max-width: 500px;
+    width: 100%;
+}
+
+.input-short{
+    min-width: 30px;
+    max-width: 250px;
+    width: 100%;
+}
+
+table {
+    width: 100%;
+  }
+
+.td-input{
+    padding-right: 8px;
+}

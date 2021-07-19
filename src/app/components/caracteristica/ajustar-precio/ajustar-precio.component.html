@@ -1,0 +1,67 @@
+<div class="content">
+    <div class="title mat-elevation-z3">
+        <h3>Ajuste de precios</h3>
+    </div>
+    <div>
+        <!-- Formulario principal -->
+        <form [formGroup]="form">
+            <div class="form-content mat-elevation-z3">
+                <div>
+                    <h4>Porcentaje de aumento</h4>
+                    <hr>
+                </div>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="td-input">
+                                <mat-form-field appearance="fill" class="input-short" floatLabel="always">
+                                    <mat-label>Porcentaje</mat-label>
+                                    <input matInput type="number" class="example-right-align" placeholder="00 "
+                                        formControlName="porcentaje">
+                                    <mat-hint align="start"><strong>*Solo se permiten valores del 1 - 100</strong>
+                                    </mat-hint>
+                                    <span matSuffix><b class="percent"> % </b></span>
+                                </mat-form-field>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="warning">
+                                <h5><em> <b> Advertencia:</b> El proceso de ajuste de precios se realiza de forma masiva
+                                        para todas las
+                                        opciones del sistema y su modificación es irreversible, solamente hágalo si está
+                                        totalmente seguro.</em></h5>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+            </div>
+            <div>
+                <table>
+                    <tr>
+                        <td>
+                            <div class="button-form">
+                                <!-- Cancelar proceso -->
+                                <button mat-raised-button color="warn"
+                                    [routerLink]="['/renticar',{outlets: {'caracteristica': ['caracteristicas']}}]">
+                                    <mat-icon>close</mat-icon> Cancelar
+                                </button>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="button-form">
+                                <!-- Confirma proceso -->
+                                <button (click)="abrirAlerta()" mat-raised-button color="primary"
+                                    [disabled]="form.invalid">
+                                    <mat-icon>done</mat-icon> Ajustar precios
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="content">
+    <div class="title mat-elevation-z3">
+        <h3>Agregar Gastos Vehículo</h3>
+    </div>
+    <div>
+        
+        <!-- Datos del vehiculo -->
+        <div class="form-content mat-elevation-z3">
+            <div>
+                <h4>Datos del Vehículo</h4>
+                <hr>
+            </div>
+            <div>
+                <app-datos-vehiculo-gastos [vehiculo]="vehiculo"></app-datos-vehiculo-gastos>
+            </div>
+        </div>
+        
+    </div>
+    <div>
+        <div *ngIf="vehiculo[0]!=undefined">
+            <!-- Gastos vehiculos propios -->
+            <div *ngIf="vehiculo[0].propio==1"><app-vehiculo-propio (formGastosCompleto)="formGastos = $event"></app-vehiculo-propio></div>
+            <!-- Gastos vehiculos no propios -->
+            <div *ngIf="vehiculo[0].propio==0"><app-vehiculo-dueno [vehiculo]="vehiculo[0]" (formGastosCompleto)="formGastos = $event"></app-vehiculo-dueno></div>
+        </div>
+    </div>
+    <div>
+        <table>
+            <tr>
+                <td>
+                    <div class="button-form">
+                        <!-- Cancelar proceso -->
+                        <button  mat-raised-button color="warn" [routerLink]="['/renticar',{outlets: {'gasto': ['gastos']}}]">
+                            <mat-icon>close</mat-icon> Cancelar </button>
+                    </div>
+                </td>
+                <td>
+                    <div class="button-form">
+                        <!-- Conformar proceso de creacion -->
+                        <button (click)="crearGasto()" mat-raised-button color="primary"
+                            [disabled]="formGastos.invalid">
+                            <mat-icon>done</mat-icon> Agregar gastos
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>

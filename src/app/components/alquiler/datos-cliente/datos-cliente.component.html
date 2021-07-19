@@ -1,0 +1,79 @@
+<div>
+    <form [formGroup]="form">
+        <div>
+            <table cellspacing="0">
+                <tr>
+                    <td class="td-input">
+                        <mat-form-field appearance="fill" class="input-long">
+                            <mat-label>Nombre completo</mat-label>
+                            <input matInput placeholder="Nombre" formControlName="nombre" (change)="enviarFromulario()">
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field appearance="fill" class="input-long">
+                            <mat-label>Apellidos</mat-label>
+                            <input matInput placeholder="Apellidos" formControlName="apellido"
+                                (change)="enviarFromulario()">
+                        </mat-form-field>
+                    </td>
+
+                </tr>
+
+            </table>
+            <table cellspacing="0">
+                <tr>
+                    <td class="td-input">
+                        <mat-form-field appearance="fill">
+                            <mat-label>Tipo Documento</mat-label>
+                            <!-- Lista que se mostrara en el select -->
+                            <mat-select formControlName="tipo">
+                                <mat-option *ngFor="let tipo of tiposDocumentos" [value]="tipo"
+                                    (change)="enviarFromulario()">
+                                    {{tipo.cod_tipo_documento}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </td>
+
+                    <td class="td-input">
+                        <mat-form-field appearance="fill" class="input-short">
+                            <mat-label>Número de documento</mat-label>
+                            <input matInput type="number" placeholder="Número de documento" formControlName="documento"
+                                (change)="enviarFromulario()">
+                            <mat-icon matSuffix>badge</mat-icon>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field appearance="fill" class="input-long">
+                            <mat-label>Correo</mat-label>
+                            <input matInput placeholder="Correo electrónico" formControlName="email"
+                                (change)="enviarFromulario()">
+                            <mat-icon matSuffix>email</mat-icon>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+            <table cellspacing="0">
+                <tr>
+                    <td class="td-input">
+                        <mat-form-field appearance="fill" class="input-long">
+                            <mat-label>Teléfono</mat-label>
+                            <input matInput type="number" placeholder="Teléfono" formControlName="telefono"
+                                (change)="enviarFromulario()">
+                            <mat-icon matSuffix>phone</mat-icon>
+                            <mat-hint>Solo incluya numeros</mat-hint>
+                        </mat-form-field>
+                    </td>
+                    <td>
+                        <mat-form-field appearance="fill" class="input-long">
+                            <mat-label>Dirección</mat-label>
+                            <input matInput placeholder="Dirección" formControlName="direccion"
+                                (change)="enviarFromulario()">
+                            <mat-icon matSuffix>home</mat-icon>
+                        </mat-form-field>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
