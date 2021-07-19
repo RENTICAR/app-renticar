@@ -133,16 +133,11 @@ export class EditarCaracteriticasVehiculoComponent implements OnInit {
     );
 
   }
-  
 
   // Emite un evento para enviar al padre el formulario
   enviarFromularioCaracteriticas() {
-    console.log(this.form.value);
-    console.log(this.caracteristicasVehiculo);
-    console.log(this.caracteristicasVehiculo.get(1));
     this.formCaracteriticasCompleto.emit(this.form);
   }
-
 
   /**
    * Construye un formulario donde se guardara el nombre de la caracteritica y la Opcion seleccionada

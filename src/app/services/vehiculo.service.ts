@@ -8,6 +8,9 @@ import { Vehiculo } from '../models/vehiculo';
 })
 export class VehiculoService {
 
+  listaFiltradaFecha: Vehiculo[] = [];
+  listaFiltradaCaracteristica: Vehiculo[] = [];
+
   vehiculoURL = 'http://localhost:8080/vehiculos/';
 
   constructor(private httpClient: HttpClient) { }
@@ -27,9 +30,14 @@ export class VehiculoService {
     return this.httpClient.get<Vehiculo>(this.vehiculoURL + `buscarPlaca/${placa}`);
   }
 
-  
+  // Consume el servicio REST que busca vehiculos que tengan la misma opcion de una caracteristica
   public listarOpcion(idOpcion: number): Observable<Vehiculo[]>{
     return this.httpClient.get<Vehiculo[]>(this.vehiculoURL + `listarFiltroOpcion/${idOpcion}`);
+  }
+
+  //Consume el servicio REST que busca vehiculos que esten disponibles en un rango de fechas
+  public listarFecha(FechaInicio: string, FechaFin: string): Observable<Vehiculo[]>{
+    return this.httpClient.get<Vehiculo[]>(this.vehiculoURL + `listarFiltroFecha/${FechaInicio}/${FechaFin}`);
   }
 
   // Consume el servicio REST para crear vehiculos

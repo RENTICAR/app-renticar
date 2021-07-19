@@ -69,8 +69,7 @@ export class FiltroCaracteristicasComponent implements OnInit {
           this.caracteristicas.push(caracteristicaFormGroup);
 
         }
-
-        console.log(this.listaCaracteristicaOpciones);
+        
       },
       err => {
         console.log(err);
@@ -98,6 +97,26 @@ export class FiltroCaracteristicasComponent implements OnInit {
 
   }
 
+  // Busca los vehiculos que tengan cada una de las caracteristicas y la lista es agregada a una lista nueva
+  async llenarListasVehiculos() {
+    this.listasVehiculos = [];
+    // Agrega a la lista la lista obtenida por el filtro de fechas
+    this.listasVehiculos.push(this.vehiculoService.listaFiltradaFecha);
+    // Recorre el formulario de las caracteristicas
+    for (let caracteristica of this.form.controls.caracteristicas.value) {
+      // Valida que solo se haga la busqueda de vehiculos con las opciones que estan seleccionadas en un valor valido
+      if (caracteristica.opcion === undefined || caracteristica.opcion === "") {
+        //console.log("NO ERROR");
+      } else {
+        // Espera hasta que la funcion retorne los datos
+        const datos = await this.buscarVehiculos(caracteristica.opcion.id_opciones_caracteristicas);
+      }
+    }
+
+    // Empieza el proceso de filtrado
+    this.filtrarVehiculos();
+  }
+
   // Busca los vehiculos que tienen una misma caracteristica
   buscarVehiculos(idOpcion) {
     return new Promise((resolve, reject) => {
@@ -113,24 +132,6 @@ export class FiltroCaracteristicasComponent implements OnInit {
       );
     });
 
-  }
-
-  // Busca los vehiculos que tengan cada una de las caracteristicas y la lista es agregada a una lista nueva
-  async llenarListasVehiculos() {
-    this.listasVehiculos = [];
-    // Recorre el formulario de las caracteristicas
-    for (let caracteristica of this.form.controls.caracteristicas.value) {
-      // Valida que solo se haga la busqueda de vehiculos con las opciones que estan seleccionadas en un valor valido
-      if (caracteristica.opcion === undefined || caracteristica.opcion === "") {
-        //console.log("NO ERROR");
-      } else {
-        // Espera hasta que la funcion retorne los datos
-        const datos = await this.buscarVehiculos(caracteristica.opcion.id_opciones_caracteristicas);
-      }
-    }
-
-    // Empieza el proceso de filtrado
-    this.filtrarVehiculos();
   }
 
   // Recorre la lista de listas de vehiculos y valida cuales vehiculos estan en todas las listas (cuales vehiculos tienen todas las caracteristicas seleccionadas)
@@ -161,7 +162,7 @@ export class FiltroCaracteristicasComponent implements OnInit {
       this.listasVehiculos.forEach(function (lista: Vehiculo[], index) {
         // Valida si no es la lista mas pequeña
         if (index != indexMin) {
-          // Valioda si el objeto esta dentro de la lista buscando su indice dentro de la lista
+          // Valida si el objeto esta dentro de la lista buscando su indice dentro de la lista
           // Si el indice retornado es -1 el objeto no esta dentro de la lista
           if (lista.map(x => x.id_vehiculos).indexOf(vehiculo.id_vehiculos) == -1) {
             // Se busca el indice del objeto que no fue encontrado, en la lista filtrada
@@ -177,13 +178,14 @@ export class FiltroCaracteristicasComponent implements OnInit {
     console.log(vehiculosFiltrados);
     // Se asignan los vehiculos filtrados a la lista principal de vehiculos
     this.vehiculos = vehiculosFiltrados;
+    // La lista resultante se asugan a la lista del servicio
+    this.vehiculoService.listaFiltradaCaracteristica = vehiculosFiltrados;
     // Envia el evento con la lista filtrada 
     this.enviarFromularioCaracteriticas();
   }
 
   // Emite un evento para enviar al padre la lista de vehiculos
   enviarFromularioCaracteriticas() {
-    console.log(this.form.value);
     this.listaVehiculosFiltrados.emit(this.vehiculos);
     
   }

@@ -47,6 +47,9 @@ export class ResultadoFiltroComponent implements OnInit {
     this.vehiculoService.listar().subscribe(
       data => {
         this.vehiculos = data;
+        // Agrega la lista de todos los vehiculos a las listas de los servicios
+        this.vehiculoService.listaFiltradaCaracteristica = this.vehiculos;
+        this.vehiculoService.listaFiltradaFecha = this.vehiculos;
         this.calcularTarifas();
       },
       err => {

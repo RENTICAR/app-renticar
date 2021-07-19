@@ -69,8 +69,7 @@ export class NuevoAlquilerComponent implements OnInit {
     this.fechaInicio = this.formFechas.value.start;
     this.fechaFin = this.formFechas.value.end;
 
-    console.log(this.formFechas.value);
-
+    // Buscar los datos del vehiculo
     this.buscarVehiculo();
     this.listarCaracteristicas(id);
     this.calcularTotalDias();
@@ -243,7 +242,7 @@ export class NuevoAlquilerComponent implements OnInit {
     const ocupacion: Ocupacion = new Ocupacion(fechaOcupacion, 0, this.vehiculo, this.estado, this.usrCreacion, this.usrModificacion);
     this.ocupacionService.crear(ocupacion).subscribe(
       data => {
-        console.log(ocupacion);
+
       },
       err => {
         console.log(err);

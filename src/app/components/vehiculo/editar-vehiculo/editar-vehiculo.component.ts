@@ -161,11 +161,9 @@ export class EditarVehiculoComponent implements OnInit {
       data => {
         // Valida el status del formulario de ocupaciones
         if (this.formFechas.status=="DISABLED"){
-          console.log("entro diables")
           // Si el formulario se deshabilito se eliminan todas las ocupaciones
           this.eliminarOcupaciones(this.ocupaciones);
         }else{
-          console.log("entro valid")
           // Desencadena el proceso para actualizar las ocupaciones
           this.quitarFechasLista();
         }
@@ -186,7 +184,6 @@ export class EditarVehiculoComponent implements OnInit {
 
   // Compara las fechas de la lista de Ocupaciones y las del formulario y extrae las que no esten en el formulario
   quitarFechasLista(): void{
-    console.log("quitar fechas")
     // Lista de opciones que se borraran
     let listaBorrar: Ocupacion[] = [];
 
@@ -206,8 +203,6 @@ export class EditarVehiculoComponent implements OnInit {
       // Valida si ya se llego al final de la lista 
       if (i === this.ocupaciones.length - 1) {
         // Se inicia el proceso de eliminado de las opciones que se agregaron a la lista
-        console.log("lista para borrar");
-        console.log(listaBorrar);
         this.eliminarOcupaciones(listaBorrar);
       }
       i++;
@@ -221,7 +216,6 @@ export class EditarVehiculoComponent implements OnInit {
     if(this.formCaracteristicas.value.caracteristicas.length === this.caracteristicas.length){
       this.actualizarCaracteristicas();
     } else{
-      console.log(this.formCaracteristicas.controls.caracteristicas.value);
       let caracteristicasNuevas = this.formCaracteristicas.controls.caracteristicas.value.slice(
         this.caracteristicas.length, this.formCaracteristicas.value.caracteristicas.length
       );
@@ -250,7 +244,6 @@ export class EditarVehiculoComponent implements OnInit {
 
   // Inserta las ocupaciones modificadas de los formulario a una nueva lista de ocupaciones
   insertarOcupaciones(): void {
-    console.log("insertar fechas fodificadas")
     // Recorre el formulario en el valor fechas, para optener el dia y el id
     for (let fecha of this.formFechas.value.fechas) {
       // Valida si la ocupacion es nueva

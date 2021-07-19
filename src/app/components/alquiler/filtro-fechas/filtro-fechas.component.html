@@ -7,7 +7,7 @@
         <mat-date-range-input [rangePicker]="picker">
             <input matStartDate placeholder="Fecha inicio" formControlName="start">
             <!-- Envia el formulario al padre cuendo hay un cambio -->
-            <input matEndDate placeholder="Fecha fin" formControlName="end" (dateChange)="enviarEventos()">
+            <input matEndDate placeholder="Fecha fin" formControlName="end" (dateChange)="buscarVehiculos()">
         </mat-date-range-input>
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-date-range-picker #picker></mat-date-range-picker>

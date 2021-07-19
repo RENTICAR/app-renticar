@@ -101,8 +101,6 @@ export class EditarOcupacionDuenoComponent implements OnInit {
 
   // Emite un evento para enviar al padre el formulario
   enviarFromularioFechas() {
-    console.log(this.form.value);
-    console.log(this.form);
     this.formFechasCompleto.emit(this.form);
   }
 

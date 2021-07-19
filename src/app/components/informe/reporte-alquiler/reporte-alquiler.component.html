@@ -124,8 +124,8 @@
             <ng-container matColumnDef="alquilado">
                 <th mat-header-cell *matHeaderCellDef> Alquilado </th>
                 <td mat-cell *matCellDef="let vehiculo"><b>
-                        <div *ngIf="vehiculo.ALQUILADO==='SI'"> {{vehiculo.ALQUILADO}} </div>
-                        <div *ngIf="vehiculo.ALQUILADO==='NO'" class="aler"> {{vehiculo.ALQUILADO}} </div>
+                        <div *ngIf="vehiculo.DIAS > 0"> SI </div>
+                        <div *ngIf="vehiculo.DIAS == 0" class="aler"> NO </div>
                     </b></td>
             </ng-container>
 
