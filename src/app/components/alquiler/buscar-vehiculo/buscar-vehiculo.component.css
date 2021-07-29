@@ -30,3 +30,8 @@ margin: 15px;
 .list-auto{
   vertical-align: top;
 }
+
+.td-top{
+  vertical-align: top;
+  width: 0px;
+}

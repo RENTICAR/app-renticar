@@ -35,6 +35,7 @@ const routes: Routes = [
     {path: 'recibidos/crear/:id', component: NuevoRecibidoComponent, outlet:'recibido'},
     // Rutas menu Vehiculos
     {path: 'vehiculos', component: ListaVehiculoComponent, outlet: 'vehiculo'},
+    {path: 'vehiculos/carga', component: EmptyComponent, outlet: 'vehiculo'},
     {path: 'vehiculos/crear', component: NuevoVehiculoComponent, outlet:'vehiculo'},
     {path: 'vehiculos/editar/:id', component: EditarVehiculoComponent, outlet:'vehiculo'},
     // Rutas menu Caracteristicas

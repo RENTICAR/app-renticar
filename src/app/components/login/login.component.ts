@@ -83,6 +83,6 @@ export class LoginComponent implements OnInit {
     setTimeout(()=>{
       this.router.navigate(['renticar', { outlets: { 'alquiler': ['alquileres'] } }]);
       this.loading = false;
-    },1500);
+    },1200);
   }
 }

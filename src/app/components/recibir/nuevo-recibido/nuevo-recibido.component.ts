@@ -80,7 +80,7 @@ export class NuevoRecibidoComponent implements OnInit {
     this.recibidoService.crear(recibido).subscribe(
       data => {
         this.alertaRespuesta(data.mensaje, 'ok', 'Recibir vehiculo');
-        this.router.navigate(['renticar',{outlets: {'recibido': ['recibidos']}}]);
+        this.router.navigate(['renticar',{outlets: {'recibido': ['recibidos'], 'vehiculo': ['vehiculos', 'carga']}}]);
       },
       err => {
         console.log(err);
@@ -89,7 +89,11 @@ export class NuevoRecibidoComponent implements OnInit {
     );
   }
 
-  // Elimina de forma logica el alquiler en la db
+  // Este metodo no esta implementado porque el borrado logico se esta haciendo en back
+  /**
+   * Elimina de forma logica el alquiler en la db
+   * @param alquiler 
+   */
   borrarAlquiler(alquiler: Alquiler): void{
     alquiler.est_alquiler = 'INACTIVO';
     alquiler.usr_modificacion = this.usrModificacion;

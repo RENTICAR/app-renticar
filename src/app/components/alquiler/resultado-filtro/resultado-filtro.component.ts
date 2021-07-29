@@ -50,6 +50,7 @@ export class ResultadoFiltroComponent implements OnInit {
         // Agrega la lista de todos los vehiculos a las listas de los servicios
         this.vehiculoService.listaFiltradaCaracteristica = this.vehiculos;
         this.vehiculoService.listaFiltradaFecha = this.vehiculos;
+        console.log(this.vehiculoService.listaFiltradaCaracteristica);
         this.calcularTarifas();
       },
       err => {

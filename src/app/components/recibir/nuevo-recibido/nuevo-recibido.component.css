@@ -37,7 +37,9 @@ input[type="radio"] {
 }
 
 label {
-  color: #8BC34A;
+  color: #FFFFFF;
+  -webkit-text-stroke: 2px #283593;
+  
 }
 
 .qualify {

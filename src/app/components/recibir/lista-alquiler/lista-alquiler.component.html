@@ -25,37 +25,37 @@
         <!-- Columna Placa -->
         <ng-container matColumnDef="placa">
           <th mat-header-cell *matHeaderCellDef> Placa </th>
-          <td mat-cell *matCellDef="let alquiler"> {{alquiler.vehiculo.placa}} </td>
+          <td mat-cell *matCellDef="let alquiler"> {{alquiler.placa}} </td>
         </ng-container>
   
         <!-- Columna Marca -->
         <ng-container matColumnDef="marca">
           <th mat-header-cell *matHeaderCellDef> Marca </th>
-          <td mat-cell *matCellDef="let alquiler"> {{alquiler.vehiculo.marca}} </td>
+          <td mat-cell *matCellDef="let alquiler"> {{alquiler.marca}} </td>
         </ng-container>
   
         <!-- Columna Modelo -->
         <ng-container matColumnDef="modelo">
           <th mat-header-cell *matHeaderCellDef> Modelo </th>
-          <td mat-cell *matCellDef="let alquiler"> {{alquiler.vehiculo.modelo}} </td>
+          <td mat-cell *matCellDef="let alquiler"> {{alquiler.modelo}} </td>
         </ng-container>
   
         <!-- Columna Año -->
         <ng-container matColumnDef="ano">
           <th mat-header-cell *matHeaderCellDef> Año </th>
-          <td mat-cell *matCellDef="let alquiler"> {{alquiler.vehiculo.ano}} </td>
+          <td mat-cell *matCellDef="let alquiler"> {{alquiler.ano}} </td>
         </ng-container>
   
         <!-- Columna Color -->
         <ng-container matColumnDef="color">
           <th mat-header-cell *matHeaderCellDef> Color </th>
-          <td mat-cell *matCellDef="let alquiler"> {{alquiler.vehiculo.color}} </td>
+          <td mat-cell *matCellDef="let alquiler"> {{alquiler.color}} </td>
         </ng-container>
   
         <!-- Columna Cliente -->
         <ng-container matColumnDef="cliente">
             <th mat-header-cell *matHeaderCellDef> Cliente </th>
-            <td mat-cell *matCellDef="let alquiler"> {{alquiler.cliente.num_documento}} </td>
+            <td mat-cell *matCellDef="let alquiler"> {{alquiler.cliente}} </td>
           </ng-container>
   
         <!-- Columna Fecha -->
@@ -70,7 +70,7 @@
           <td mat-cell *matCellDef="let alquiler">
             <!-- Carga la ruta editar caracteristica-->
             <button mat-mini-fab color="accent"
-              [routerLink]="['/renticar',{outlets: {'recibido': ['recibidos','crear',alquiler.id_alquileres]}}]">
+              [routerLink]="['/renticar',{outlets: {'recibido': ['recibidos','crear',alquiler.id]}}]">
               <mat-icon>event_available</mat-icon>
             </button>
           </td>

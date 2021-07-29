@@ -59,8 +59,9 @@ export class FiltroFechasComponent implements OnInit {
           console.log(err);
         }
       );
+      //this.enviarEventos();
     }
-    this.enviarEventos();
+    
   }
 
   // Recorre la lista de vehiculos filtrados por fecha y la lista de vehiculos filtrados por caracteristicas

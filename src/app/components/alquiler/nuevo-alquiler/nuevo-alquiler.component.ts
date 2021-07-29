@@ -208,7 +208,7 @@ export class NuevoAlquilerComponent implements OnInit {
     this.alquilerService.crear(alquiler).subscribe(
       data => {
         this.alertaRespuesta(data.mensaje, 'ok', 'Alquilar vehiculo');
-        this.router.navigate(['renticar',{outlets: {'alquiler': ['alquileres'], 'recibido': ['recibidos','carga']}}]);
+        this.router.navigate(['renticar',{outlets: {'alquiler': ['alquileres'], 'recibido': ['recibidos','carga'], 'vehiculo': ['vehiculos', 'carga']}}]);
       },
       err => {
         console.log(err);
